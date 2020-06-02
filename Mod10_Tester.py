@@ -8,7 +8,7 @@
 
 import random
 
-def isMod10(num):
+def isMod10(num):                           # type a number, this tells you whether it is Mod10 Passing 
     num = num.replace(" ","")               #removes all spaces
     num = num[::-1]                         #reverses the number.  The last number in the series always gets doubled. To make sure this happens we reverse the series and double the first number
     nums = []                               #the list of numbers is treated as a double initially, but is ultimately treated as a list of individual numbers.  this is that list
