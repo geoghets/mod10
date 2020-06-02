@@ -1,11 +1,3 @@
-#Does a given number pass the luhn algorithm?
-#The luhn algorithm is performed on a number string
-#Consider a set of 16 digits, ABCDEFGHJKLMNQRS
-# IF (A+B*2+C+D*2+E+F*2+G+H*2+J+K*2+L+M*2+N+Q*2+R+S*2)%0 = 0 , Then it is a luhn passing number or a Mod10 passing number
-#But wait, it's actually more complicated.
-#If 2*X >= 10, The resulting two digits must be added together
-# eg. 2*8 = 16, 1+6 = 7
-
 import random
 
 def isMod10(num):
@@ -27,18 +19,17 @@ def isMod10(num):
 
     return isMod10
 
+#brute force mod10 generator (just guesses 16 digit numbers until it finds one that works) #makes a list of mod10 passing numbers
+def generateMod10(num):
+    mod10list = []
 
-#brute force mod10 generator (just guess 16 digit numbers until it finds one that works)
-#makes a list of mod10 passing
-mod10list = []
-
-while len(mod10list) < 8:                                     # Choose how many mod10 numbers you want it to create
-    r = random.randint(4000000000000000, 4999999999999999)    #You can use any range of numbers you want.  All Visa Card numbers are between 4000000000000000 and 4999999999999999)
-    r = str(r)                                                # So you have a random 16 digit number, now turn it into a string, and run it through the MOD10 checker
-    if isMod10(r) == True:
-        mod10list.append(r)
-
-for i in range(len(mod10list)):
-    print(mod10list[i])
-
-
+    while len(mod10list) < num:                                     # Choose how many mod10 numbers you want it to create
+        r = random.randint(4000000000000000, 4999999999999999)    #You can use any range of numbers you want.  All Visa Card numbers are between 4000000000000000 and 4999999999999999)
+        r = str(r)                                                # So you have a random 16 digit number, now turn it into a string, and run it through the MOD10 checker
+        if isMod10(r) == True:
+            mod10list.append(r)
+    
+    a = [mod10list[i] for i in range(len(mod10list))]    
+    return a
+    
+print(generateMod10(8))
